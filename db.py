@@ -1,10 +1,10 @@
  # DB connection / engine setup + initilize job table
 import sqlite3
 
-DB_PATH = "jobs.db"
+DB_PATH = "Jobs.db"
 
 def init_db():
-    con = sqlite3.connect("Jobs.db")
+    con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
     cur.execute("""
     CREATE TABLE IF NOT EXISTS jobs (

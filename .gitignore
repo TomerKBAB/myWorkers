@@ -20,3 +20,4 @@ venv/
 
 # Project-specific ignores
 fortoday.txt
+test_api.txt
