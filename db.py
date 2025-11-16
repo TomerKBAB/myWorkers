@@ -1,6 +1,8 @@
  # DB connection / engine setup + initilize job table
 import sqlite3
 
+DB_PATH = "jobs.db"
+
 def init_db():
     con = sqlite3.connect("Jobs.db")
     cur = con.cursor()
@@ -19,3 +21,12 @@ def init_db():
     """)
     con.commit()
     con.close()
+
+def get_connection():
+    """
+    Returns a new SQLite connection.
+    IMPORTANT: The caller is responsible for closing the connection.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row   # optional: allows dict-like rows
+    return conn
