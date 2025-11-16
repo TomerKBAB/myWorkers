@@ -1,11 +1,11 @@
 # job-related logic (create job, fetch next job, etc.)
 from db import get_connection
-from datetime import datetime
+from datetime import datetime, UTC
 import json
 
 
 def create_job(job_type: str, payload: dict) -> int:
-    now = datetime.utcnow().isoformat()
+    now = datetime.now(UTC).isoformat()
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -53,7 +53,7 @@ def update_job_status(job_id: int, status: str, result=None, error: str | None =
     """
     Update status, timestamps, result/error, and optionally increment attempts.
     """
-    now = datetime.utcnow().isoformat()
+    now = datetime.now(UTC).isoformat()
 
     conn = get_connection()
     cur = conn.cursor()

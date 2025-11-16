@@ -1,7 +1,7 @@
 # worker.py
 import time
 import json
-from datetime import datetime
+from datetime import datetime, UTC
 
 from services import get_next_pending_job, update_job_status
 
@@ -17,7 +17,7 @@ def process_job(row) -> dict:
     payload_raw = row["payload"]
     payload = json.loads(payload_raw) if payload_raw else None
 
-    print(f"[{datetime.utcnow().isoformat()}] Processing job {job_id} ({job_type}) with payload={payload}")
+    print(f"[{datetime.now(UTC).isoformat()}] Processing job {job_id} ({job_type}) with payload={payload}")
 
     # Very simple branching per job type
     if job_type == "generate_report":

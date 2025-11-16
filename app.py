@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from db import init_db
 from services import create_job, get_job
 from models import JobCreate
+from fastapi import HTTPException
 
 init_db()
 app = FastAPI()
@@ -23,7 +24,7 @@ def create_job_endpoint(job: JobCreate):
 def get_job_endpoint(job_id: int):
     row = get_job(job_id)
     if row is None:
-        return {"error": "Job not found"}
+        raise HTTPException(status_code=404, detail="Job not found")
 
     data = dict(row)
 
