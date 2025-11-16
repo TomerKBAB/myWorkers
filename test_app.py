@@ -68,7 +68,7 @@ def test_get_missing_job_returns_error_object(client: TestClient):
     # This tests current behavior (200 + {"error": ...})
     # If later you change to proper 404, you’ll update this test.
     resp = client.get("/jobs/999999")
-    assert resp.status_code == 200
+    assert resp.status_code == 404
     data = resp.json()
-    assert "error" in data
-    assert data["error"] == "Job not found"
+    assert "detail" in data
+    assert data["detail"] == "Job not found"
