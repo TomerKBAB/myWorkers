@@ -21,3 +21,6 @@ venv/
 # Project-specific ignores
 fortoday.txt
 test_api.txt
+INTERVIEW_PREP.md
+fortoday.MD
+.gitignore
